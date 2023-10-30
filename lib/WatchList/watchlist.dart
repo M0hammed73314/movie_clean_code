@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies/MyTheme.dart';
 
 import 'movielist.dart';
@@ -43,7 +44,7 @@ class WatchList extends StatelessWidget {
               padding: const EdgeInsets.all(10.0),
               child: Text("Watchlist",
                   style: TextStyle(
-                      fontSize: 22,
+                      fontSize: 22.sp,
                       fontWeight: FontWeight.bold,
                       color: MyTheme.whiteColor)),
             ),
@@ -58,7 +59,7 @@ class WatchList extends StatelessWidget {
                     },
                     separatorBuilder: (context, index) {
                       return SizedBox(
-                        height: 15,
+                        height: 15.h,
                         child: Divider(
                             color: MyTheme.greyColor, height: 3, thickness: 1),
                       );
