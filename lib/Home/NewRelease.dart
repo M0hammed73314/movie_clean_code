@@ -11,7 +11,7 @@ class NewRelease extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(3.0),
       child: Stack(children: [
-        Image.asset(image),
+        Image.network("https://image.tmdb.org/t/p/w500${image}"),
         InkWell(onTap: () {}, child: Image.asset(icon))
       ]),
     );

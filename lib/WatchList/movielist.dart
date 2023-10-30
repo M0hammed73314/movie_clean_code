@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies/MyTheme.dart';
 
 class MovieList extends StatelessWidget {
@@ -32,12 +33,12 @@ class MovieList extends StatelessWidget {
               Text(
                 filmName,
                 style: TextStyle(
-                    fontSize: 15,
+                    fontSize: 15.sp,
                     fontWeight: FontWeight.w500,
                     color: MyTheme.whiteColor),
               ),
               SizedBox(
-                height: 10,
+                height: 10.h,
               ),
               Text(
                 date,
@@ -47,12 +48,12 @@ class MovieList extends StatelessWidget {
                     fontWeight: FontWeight.w400),
               ),
               SizedBox(
-                height: 10,
+                height: 10.h,
               ),
               Text(
                 actor,
                 style: TextStyle(
-                    fontSize: 13,
+                    fontSize: 13.sp,
                     fontWeight: FontWeight.w400,
                     color: MyTheme.greyColor),
               ),
