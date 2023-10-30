@@ -11,9 +11,9 @@ class MyTheme {
 
   static ThemeData LightTheme = ThemeData(
     textTheme: TextTheme(
-        titleSmall: TextStyle(fontSize: 8, fontWeight: FontWeight.bold),
-        titleMedium: TextStyle(fontSize: 14, fontWeight: FontWeight.w200),
-        titleLarge: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+        titleSmall: TextStyle(fontSize: 8, fontWeight: FontWeight.bold,color: greyColor),
+        titleMedium: TextStyle(fontSize: 14, fontWeight: FontWeight.w200,color: whiteColor),
+        titleLarge: TextStyle(fontSize: 15, fontWeight: FontWeight.bold,color: whiteColor)),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
         selectedLabelStyle: TextStyle(fontSize: 8, fontWeight: FontWeight.bold),
         unselectedLabelStyle:
