@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:movies/HomeScreen.dart';
 import 'package:movies/MyTheme.dart';
-import 'package:movies/movie/category_tab.dart';
-import 'package:movies/movie/more_like_this.dart';
+import 'package:movies/movie_details/category_tab.dart';
+import 'package:movies/movie_details/more_like_this.dart';
 
 class MovieDetails extends StatelessWidget {
   static const String routeName = 'movie_details';

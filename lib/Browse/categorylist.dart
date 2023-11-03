@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:movies/MyTheme.dart';
+import 'package:movies/filtered_movies/filtered_movies_view.dart';
+import '../model/Genres.dart';
 
 class CategoryList extends StatelessWidget {
-  String image;
-  String category;
-
-  CategoryList({required this.image, required this.category});
+  Genres genres;
+  CategoryList({required this.genres});
 
   @override
   Widget build(BuildContext context) {
@@ -13,13 +13,13 @@ class CategoryList extends StatelessWidget {
       alignment: Alignment.center,
       children: [
         Image.asset(
-          image,
+          "assets/images/category.png",
           fit: BoxFit.fill,
           width: double.infinity,
           height: MediaQuery.of(context).size.height * .15,
         ),
         Text(
-          category,
+        genres.name??'',
           style: TextStyle(
               fontSize: 15,
               color: MyTheme.whiteColor,
