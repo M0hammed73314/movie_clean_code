@@ -1,7 +1,9 @@
 import 'dart:convert';
+
 import 'package:http/http.dart' as http;
 import 'package:movies/api/api_constant.dart';
 import 'package:movies/model/Genres.dart';
+
 import '../model/MoviesList.dart';
 import '../model/MyPopular.dart';
 import '../model/my_recommended.dart';
@@ -13,7 +15,7 @@ class ApiManager {
 https://api.themoviedb.org/3/movie/popular?api_key=c4c3d1e82f8dee40ffdf440f479d937
 */
 
-  static Future<MyPopular?> getPopular() async {
+  static Future<MyPopular> getPopular() async {
     Uri url = Uri.https(
       ApiConstant.BaseUrl,
       ApiConstant.popularService,
@@ -30,7 +32,7 @@ https://api.themoviedb.org/3/movie/popular?api_key=c4c3d1e82f8dee40ffdf440f479d9
     }
   }
 
-  static Future<NewReleases?> getRelease() async {
+  static Future<NewReleases> getRelease() async {
     Uri url = Uri.https(
       ApiConstant.BaseUrl,
       ApiConstant.popularService2,
@@ -47,7 +49,7 @@ https://api.themoviedb.org/3/movie/popular?api_key=c4c3d1e82f8dee40ffdf440f479d9
     }
   }
 
-  static Future<MyRecommended?> getRecommended() async {
+  static Future<MyRecommended> getRecommended() async {
     Uri url = Uri.https(
       ApiConstant.BaseUrl,
       ApiConstant.popularService3,
