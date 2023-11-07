@@ -6,11 +6,15 @@ import 'package:movies/Home/cubit/release/release_view_model.dart';
 import 'package:movies/HomeScreen.dart';
 import 'package:movies/MyTheme.dart';
 import 'package:movies/filtered_movies/filtered_movies_view.dart';
+import 'package:movies/shared/remote/dio_helper.dart';
 
 import 'bloc/category/genres.dart';
 import 'movie_details/movie_details.dart';
+import 'observer/myObserver.dart';
 
 void main() {
+  DioHelper.init();
+  Bloc.observer = MyBlocObserver();
   runApp(MultiBlocProvider(
     providers: [
       BlocProvider<GenreCubit>(

@@ -2,19 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies/MyTheme.dart';
 
+import '../model/navigate.dart';
+import '../movie_details/movie_details.dart';
+
 class Recommended extends StatelessWidget {
   String image;
   String icon;
   String rating;
   String filmName;
   String date;
+  int id;
 
   Recommended(
       {required this.image,
       required this.icon,
       required this.rating,
       required this.filmName,
-      required this.date});
+      required this.date,
+      required this.id});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +31,13 @@ class Recommended extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(5.0),
             child: Stack(children: [
-              Image.network("https://image.tmdb.org/t/p/w500${image}"),
+              InkWell(
+                  onTap: () {
+                    Navigator.of(context).pushNamed(MovieDetails.routeName,
+                        arguments: NavigateModel(id));
+                  },
+                  child:
+                      Image.network("https://image.tmdb.org/t/p/w500${image}")),
               InkWell(onTap: () {}, child: Image.asset(icon))
             ]),
           ),

@@ -1,9 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies/bloc/category/state.dart';
 import 'package:movies/filtered_movies/filtered_movie_item.dart';
+
 import '../MyTheme.dart';
 import '../api/api_manager.dart';
 import '../bloc/category/genres.dart';
@@ -28,7 +28,7 @@ class _FilteredMoviesViewState extends State<FilteredMoviesView> {
           child: Text(
             "Browse Category ",
             style: TextStyle(
-                fontSize: 22,
+                fontSize: 22.sp,
                 fontWeight: FontWeight.bold,
                 color: MyTheme.whiteColor),
           ),
@@ -37,7 +37,10 @@ class _FilteredMoviesViewState extends State<FilteredMoviesView> {
       body: BlocBuilder<GenreCubit, GenreState>(
         builder: (context, state) {
           if (state is GenreLoading) {
-            return Center(child: CircularProgressIndicator());
+            return Center(
+                child: CircularProgressIndicator(
+              color: MyTheme.whiteColor,
+            ));
           }
           if (state is GenreError) {
             return Center(

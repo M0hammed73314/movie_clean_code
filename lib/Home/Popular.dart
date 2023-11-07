@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../MyTheme.dart';
+import '../model/navigate.dart';
 import '../movie_details/movie_details.dart';
 
 class Popular extends StatelessWidget {
@@ -39,47 +40,49 @@ class Popular extends StatelessWidget {
       child: Container(
         child: Stack(
           children: [
-            Image.network(
-              "https://image.tmdb.org/t/p/w500${BackDrop}",
-              width: double.infinity,
-              height: 217.h,
-              fit: BoxFit.cover,
+            InkWell(
+              onTap: () {
+                Navigator.of(context).pushNamed(MovieDetails.routeName,
+                    arguments: NavigateModel(id));
+              },
+              child: Image.network(
+                "https://image.tmdb.org/t/p/w500${BackDrop}",
+                width: double.infinity,
+                height: 217.h,
+                fit: BoxFit.cover,
+              ),
             ),
             Row(
               children: [
                 Align(
                   alignment: Alignment.bottomLeft,
-                  child: InkWell(
-                    onTap: () {
-                      Navigator.of(context).pushNamed(MovieDetails.routeName);
-                    },
-                    child: Container(
-                      width: 129.w,
-                      height: 199.h,
-                      child: Stack(children: [
-                        Container(
-                          child: InkWell(
-                            onTap: () {
-                              Navigator.of(context)
-                                  .pushNamed(MovieDetails.routeName);
-                            },
-                            child: Image.network(
-                                "https://image.tmdb.org/t/p/w500${Poster}"),
-                          ),
-                          height: 199.h,
-                          width: 129.w,
+                  child: Container(
+                    width: 129.w,
+                    height: 199.h,
+                    child: Stack(children: [
+                      Container(
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.of(context).pushNamed(
+                                MovieDetails.routeName,
+                                arguments: NavigateModel(id));
+                          },
+                          child: Image.network(
+                              "https://image.tmdb.org/t/p/w500${Poster}"),
                         ),
-                        InkWell(
-                            onTap: () {},
-                            child: Image.asset("assets/images/bookmark.png"))
-                      ]),
-                    ),
+                        height: 199.h,
+                        width: 129.w,
+                      ),
+                      InkWell(
+                          onTap: () {},
+                          child: Image.asset("assets/images/bookmark.png"))
+                    ]),
                   ),
                 ),
                 InkWell(
                     onTap: () {},
                     child: Padding(
-                        padding: EdgeInsets.only(left: 20, bottom: 30),
+                        padding: EdgeInsets.only(left: 35, bottom: 30),
                         child: Image.asset("assets/images/play-button-2.png"))),
               ],
             ),

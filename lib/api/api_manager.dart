@@ -6,6 +6,7 @@ import 'package:movies/model/Genres.dart';
 
 import '../model/MoviesList.dart';
 import '../model/MyPopular.dart';
+import '../model/my_movie_details.dart';
 import '../model/my_recommended.dart';
 import '../model/my_search.dart';
 import '../model/new_releases.dart';
@@ -123,6 +124,20 @@ https://api.themoviedb.org/3/movie/popular?api_key=c4c3d1e82f8dee40ffdf440f479d9
       var bodyString = response.body;
       var json = jsonDecode(bodyString);
       return MoviesList.fromJson(json);
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  static Future<MyMovieDetails> myGetMovieDetails(int? movieId) async {
+    Uri url = Uri.https(ApiConstant.BaseUrl, '/3/movie/$movieId', {
+      'api_key': 'c4c3d1e82f8dee40ffdf440f479d9373',
+    });
+    try {
+      var response = await http.get(url);
+      var bodyString = response.body;
+      var json = jsonDecode(bodyString);
+      return MyMovieDetails.fromJson(json);
     } catch (e) {
       throw e;
     }

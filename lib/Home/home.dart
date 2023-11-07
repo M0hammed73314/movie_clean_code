@@ -56,7 +56,8 @@ class _HomeState extends State<Home> {
               } else if (state is PopularSuccesState) {
                 return CarouselSlider.builder(
                     options: CarouselOptions(
-                      autoPlay: true,
+                      viewportFraction: 1,
+                      autoPlay: false,
                       height: 390.h,
                       enlargeCenterPage: true,
                       disableCenter: true,
@@ -83,113 +84,7 @@ class _HomeState extends State<Home> {
               }
               return Container();
             },
-          )
-          // FutureBuilder(
-          //   future: ApiManager.getPopular(),
-          //   builder: (context, snapshot) {
-          //     if (snapshot.connectionState == ConnectionState.waiting) {
-          //       return Center(
-          //         child: CircularProgressIndicator(color: MyTheme.whiteColor),
-          //       );
-          //     } else if (snapshot.hasError) {
-          //       return Column(
-          //         children: [
-          //           Text("someThing went wrong"),
-          //           ElevatedButton(onPressed: () {}, child: Text("Try again"))
-          //         ],
-          //       );
-          //     }
-          //     if (snapshot.data?.success == false) {
-          //       return Column(
-          //         children: [
-          //           Text(snapshot.data?.status_message ?? ""),
-          //           ElevatedButton(onPressed: () {}, child: Text("Try again"))
-          //         ],
-          //       );
-          //     }
-          //     var movieList = snapshot.data?.results ?? [];
-          //     return Container(
-          //       height: MediaQuery.of(context).size.height * .42,
-          //       child: Stack(
-          //         children: [
-          //           Image.network(
-          //             "https://image.tmdb.org/t/p/w500${movieList[0].backdropPath}",
-          //             width: double.infinity,
-          //             height: MediaQuery.of(context).size.height * .32,
-          //             fit: BoxFit.cover,
-          //           ),
-          //           Row(
-          //             children: [
-          //               Align(
-          //                 alignment: Alignment.bottomLeft,
-          //                 child: InkWell(
-          //                   onTap: (){
-          //                     Navigator.of(context).pushNamed(MovieDetails.routeName);
-          //                   },
-          //                   child: Container(
-          //                     child: Stack(children: [
-          //                       Container(
-          //                         child: InkWell(
-          //                           onTap: (){
-          //                             Navigator.of(context).pushNamed(MovieDetails.routeName);
-          //                           },
-          //                           child: Image.network(
-          //                               "https://image.tmdb.org/t/p/w500${movieList[0].posterPath}"),
-          //                         ),
-          //                         height: 199.h,
-          //                         width: 129.w,
-          //                       ),
-          //                       InkWell(
-          //                           onTap: () {},
-          //                           child:
-          //                               Image.asset("assets/images/bookmark.png"))
-          //                     ]),
-          //                   ),
-          //                 ),
-          //               ),
-          //               InkWell(
-          //                   onTap: () {},
-          //                   child: Padding(
-          //                       padding: EdgeInsets.only(left: 42),
-          //                       child: Image.asset(
-          //                           "assets/images/play-button-2.png"))),
-          //             ],
-          //           ),
-          //           Padding(
-          //             padding: EdgeInsets.only(
-          //                 top: MediaQuery.of(context).size.height * .34,
-          //                 left: MediaQuery.of(context).size.height * .19),
-          //             child: Text(
-          //               "${movieList[0].title}",
-          //               style: Theme.of(context)
-          //                   .textTheme
-          //                   .titleMedium
-          //                   ?.copyWith(
-          //                       color: MyTheme.whiteColor,
-          //                       fontWeight: FontWeight.w400),
-          //             ),
-          //           ),
-          //           Padding(
-          //             padding: EdgeInsets.only(
-          //                 top: MediaQuery.of(context).size.height * .37,
-          //                 left: MediaQuery.of(context).size.height * .19),
-          //             child: Text(
-          //               "2019  PG-13  2h 7m",
-          //               style: Theme.of(context)
-          //                   .textTheme
-          //                   .titleMedium
-          //                   ?.copyWith(
-          //                       color: MyTheme.greyColor,
-          //                       fontSize: 10.sp,
-          //                       fontWeight: FontWeight.w400),
-          //             ),
-          //           )
-          //         ],
-          //       ),
-          //     );
-          //   },
-          // )
-          ,
+          ),
           BlocBuilder<ReleaseViewModel, HomeState>(
             bloc: viewModel,
             builder: (context, state) {
@@ -234,8 +129,20 @@ class _HomeState extends State<Home> {
                               },
                               itemBuilder: (context, index) {
                                 return NewRelease(
-                                    image: state.result[index].posterPath ?? "",
-                                    icon: "assets/images/bookmark.png");
+                                    state.result[index].adult,
+                                    state.result[index].backdropPath,
+                                    state.result[index].genreIds,
+                                    state.result[index].id,
+                                    state.result[index].originalLanguage,
+                                    state.result[index].originalTitle,
+                                    state.result[index].overview,
+                                    state.result[index].popularity,
+                                    state.result[index].posterPath,
+                                    state.result[index].releaseDate,
+                                    state.result[index].title,
+                                    state.result[index].video,
+                                    state.result[index].voteAverage,
+                                    state.result[index].voteCount);
                               },
                               itemCount: state.result.length,
                               scrollDirection: Axis.horizontal),
@@ -248,36 +155,6 @@ class _HomeState extends State<Home> {
               return Container();
             },
           ),
-
-          // FutureBuilder(
-          //   future: ApiManager.getRelease(),
-          //   builder: (context, snapshot) {
-          //     if (snapshot.connectionState == ConnectionState.waiting) {
-          //       return Center(
-          //         child: CircularProgressIndicator(color: MyTheme.whiteColor),
-          //       );
-          //     } else if (snapshot.hasError) {
-          //       return Column(
-          //         children: [
-          //           Text("someThing went wrong"),
-          //           ElevatedButton(onPressed: () {}, child: Text("Try again"))
-          //         ],
-          //       );
-          //     }
-          //     if (snapshot.data?.success == false) {
-          //       return Column(
-          //         children: [
-          //           Text(snapshot.data?.status_message ?? ""),
-          //           ElevatedButton(onPressed: () {}, child: Text("Try again"))
-          //         ],
-          //       );
-          //     }
-          //     var releaseList = snapshot.data?.results ?? [];
-          //       ,
-          //
-          //         },
-          //       ),
-          // ,
           BlocBuilder<RecommendedViewModel, RecommededState>(
             bloc: viewModel3,
             builder: (context, state) {
@@ -320,6 +197,7 @@ class _HomeState extends State<Home> {
                                     height: 127.74.h,
                                     width: 96.87.w,
                                     child: Recommended(
+                                        id: state.result[index].id ?? 0,
                                         image: state.result[index].posterPath ??
                                             "",
                                         icon: "assets/images/bookmark.png",
@@ -346,163 +224,8 @@ class _HomeState extends State<Home> {
               return Container();
             },
           )
-          // FutureBuilder(
-          //   future: ApiManager.getRecommended(),
-          //   builder: (context, snapshot) {
-          //     if (snapshot.connectionState == ConnectionState.waiting) {
-          //       return Center(
-          //         child: CircularProgressIndicator(color: MyTheme.whiteColor),
-          //       );
-          //     } else if (snapshot.hasError) {
-          //       return Column(
-          //         children: [
-          //           Text("someThing went wrong"),
-          //           ElevatedButton(onPressed: () {}, child: Text("Try again"))
-          //         ],
-          //       );
-          //     }
-          //     if (snapshot.data?.success == false) {
-          //       return Column(
-          //         children: [
-          //           Text(snapshot.data?.status_message ?? ""),
-          //           ElevatedButton(onPressed: () {}, child: Text("Try again"))
-          //         ],
-          //       );
-          //     }
-          //     var recommendedList = snapshot.data?.results ?? [];
-          //     return Padding(
-          //       padding: EdgeInsets.only(top: 10),
-          //       child: Container(
-          //         height: MediaQuery.of(context).size.height * .3,
-          //         width: double.infinity,
-          //         color: MyTheme.containerFilmColor,
-          //         child: Column(
-          //           crossAxisAlignment: CrossAxisAlignment.stretch,
-          //           children: [
-          //             Padding(
-          //               padding: const EdgeInsets.all(8.0),
-          //               child: Text(
-          //                 "Recomended",
-          //                 style: Theme.of(context)
-          //                     .textTheme
-          //                     .titleLarge
-          //                     ?.copyWith(color: MyTheme.whiteColor),
-          //               ),
-          //             ),
-          //             Expanded(
-          //               child: ListView.separated(
-          //                   scrollDirection: Axis.horizontal,
-          //                   itemBuilder: (context, index) {
-          //                     return Container(
-          //                         height: 127.74.h,
-          //                         width: 96.87.w,
-          //                         child: Recommended(
-          //                             image:
-          //                                 recommendedList[index].posterPath ??
-          //                                     "",
-          //                             icon: "assets/images/bookmark.png",
-          //                             rating:
-          //                                 "${recommendedList[index].voteAverage}",
-          //                             filmName:
-          //                                 "${recommendedList[index].title}",
-          //                             date:
-          //                                 "${recommendedList[index].releaseDate}"));
-          //                   },
-          //                   separatorBuilder: (context, index) {
-          //                     return SizedBox(
-          //                       width: MediaQuery.of(context).size.width * .02,
-          //                     );
-          //                   },
-          //                   itemCount: recommendedList.length),
-          //             )
-          //           ],
-          //         ),
-          //       ),
-          //     );
-          //   },
-          // ),
         ],
       ),
     );
   }
 }
-/*
- Container(
-                  height: MediaQuery.of(context).size.height * .42,
-        child: Stack(
-        children: [
-        Image.network(
-        "https://image.tmdb.org/t/p/w500${state.result[0].backdropPath}",
-        width: double.infinity,
-        height: MediaQuery.of(context).size.height * .32,
-        fit: BoxFit.cover,
-        ),
-        Row(
-        children: [
-        Align(
-        alignment: Alignment.bottomLeft,
-        child: InkWell(
-        onTap: (){
-        Navigator.of(context).pushNamed(MovieDetails.routeName);
-        },
-        child: Container(
-        child: Stack(children: [
-        Container(
-        child: InkWell(
-        onTap: (){
-        Navigator.of(context).pushNamed(MovieDetails.routeName);
-        },
-        child: Image.network(
-        "https://image.tmdb.org/t/p/w500${state.result[0].posterPath}"),
-        ),
-        height: 199.h,
-        width: 129.w,
-        ),
-        InkWell(
-        onTap: () {},
-        child:
-        Image.asset("assets/images/bookmark.png"))
-        ]),
-        ),
-        ),
-        ),
-        InkWell(
-        onTap: () {},
-        child: Padding(
-        padding: EdgeInsets.only(left: 42),
-        child: Image.asset(
-        "assets/images/play-button-2.png"))),
-        ],
-        ),
-        Padding(
-        padding: EdgeInsets.only(
-        top: MediaQuery.of(context).size.height * .34,
-        left: MediaQuery.of(context).size.height * .19),
-        child: Text(
-        "${state.result[0].title}",
-        style: Theme.of(context)
-            .textTheme
-            .titleMedium
-            ?.copyWith(
-        color: MyTheme.whiteColor,
-        fontWeight: FontWeight.w400),
-        ),
-        ),
-        Padding(
-        padding: EdgeInsets.only(
-        top: MediaQuery.of(context).size.height * .37,
-        left: MediaQuery.of(context).size.height * .19),
-        child: Text(
-        "2019  PG-13  2h 7m",
-        style: Theme.of(context)
-            .textTheme
-            .titleMedium
-            ?.copyWith(
-        color: MyTheme.greyColor,
-        fontSize: 10.sp,
-        fontWeight: FontWeight.w400),
-        ),
-        )
-        ],
-        ),);
-*/
