@@ -3,8 +3,8 @@
 /// total_pages : 446
 /// total_results : 8903
 
-class MyRecommended {
-  MyRecommended({
+class RecommendedModel {
+  RecommendedModel({
     this.page,
     this.results,
     this.success,
@@ -14,12 +14,12 @@ class MyRecommended {
     this.totalResults,
   });
 
-  MyRecommended.fromJson(dynamic json) {
+  RecommendedModel.fromJson(dynamic json) {
     page = json['page'];
     if (json['results'] != null) {
       results = [];
       json['results'].forEach((v) {
-        results?.add(Results.fromJson(v));
+        results?.add(RecommendedResult.fromJson(v));
       });
     }
     totalPages = json['total_pages'];
@@ -30,7 +30,7 @@ class MyRecommended {
   }
 
   int? page;
-  List<Results>? results;
+  List<RecommendedResult>? results;
   int? totalPages;
   bool? success;
   String? status_message;
@@ -64,8 +64,8 @@ class MyRecommended {
 /// vote_average : 8.71
 /// vote_count : 18830
 
-class Results {
-  Results({
+class RecommendedResult {
+  RecommendedResult({
     this.adult,
     this.backdropPath,
     this.genreIds,
@@ -82,7 +82,7 @@ class Results {
     this.voteCount,
   });
 
-  Results.fromJson(dynamic json) {
+  RecommendedResult.fromJson(dynamic json) {
     adult = json['adult'];
     backdropPath = json['backdrop_path'];
     genreIds = json['genre_ids'] != null ? json['genre_ids'].cast<int>() : [];

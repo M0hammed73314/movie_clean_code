@@ -4,8 +4,8 @@
 /// total_pages : 29
 /// total_results : 561
 
-class NewReleases {
-  NewReleases({
+class NewReleasesModel {
+  NewReleasesModel({
     this.dates,
     this.page,
     this.results,
@@ -16,13 +16,13 @@ class NewReleases {
     this.totalResults,
   });
 
-  NewReleases.fromJson(dynamic json) {
+  NewReleasesModel.fromJson(dynamic json) {
     dates = json['dates'] != null ? Dates.fromJson(json['dates']) : null;
     page = json['page'];
     if (json['results'] != null) {
       results = [];
       json['results'].forEach((v) {
-        results?.add(Results.fromJson(v));
+        results?.add(NewReleaseResult.fromJson(v));
       });
     }
     totalPages = json['total_pages'];
@@ -37,7 +37,7 @@ class NewReleases {
   bool? success;
   String? status_message;
   int? status_code;
-  List<Results>? results;
+  List<NewReleaseResult>? results;
   int? totalPages;
   int? totalResults;
 
@@ -71,8 +71,8 @@ class NewReleases {
 /// vote_average : 8.7
 /// vote_count : 352
 
-class Results {
-  Results({
+class NewReleaseResult {
+  NewReleaseResult({
     this.adult,
     this.backdropPath,
     this.genreIds,
@@ -89,7 +89,7 @@ class Results {
     this.voteCount,
   });
 
-  Results.fromJson(dynamic json) {
+  NewReleaseResult.fromJson(dynamic json) {
     adult = json['adult'];
     backdropPath = json['backdrop_path'];
     genreIds = json['genre_ids'] != null ? json['genre_ids'].cast<int>() : [];

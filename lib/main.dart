@@ -1,35 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movies/Home/cubit/popular/popular_view_model.dart';
-import 'package:movies/Home/cubit/release/release_view_model.dart';
 import 'package:movies/HomeScreen.dart';
 import 'package:movies/MyTheme.dart';
 import 'package:movies/filtered_movies/filtered_movies_view.dart';
 import 'package:movies/shared/remote/dio_helper.dart';
 
-import 'bloc/category/genres.dart';
 import 'movie_details/movie_details.dart';
 import 'observer/myObserver.dart';
 
 void main() {
   DioHelper.init();
   Bloc.observer = MyBlocObserver();
-  runApp(MultiBlocProvider(
-    providers: [
-      BlocProvider<GenreCubit>(
-        create: (BuildContext context) => GenreCubit(),
-      ),
-      BlocProvider<ReleaseViewModel>(
-        create: (BuildContext context) => ReleaseViewModel(),
-      ),
-      BlocProvider<PopularViewModel>(
-        create: (BuildContext context) => PopularViewModel(),
-      ),
-    ],
-    child: MyApp(),
-  ));
+  runApp(MyApp());
 }
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

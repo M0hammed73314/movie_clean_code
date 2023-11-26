@@ -12,19 +12,6 @@ class Search extends StatefulWidget {
 class _SearchState extends State<Search> {
   var textSearch = TextEditingController();
 
-  List<SearchList> searchList = [
-    SearchList(
-        image: "assets/images/favmovie.png",
-        filmName: "Alita Battle Angel",
-        date: "2019",
-        actor: "Rosa Salazar, Christoph Waltz"),
-    SearchList(
-        image: "assets/images/favmovie.png",
-        filmName: "Alita Battle Angel",
-        date: "2019",
-        actor: "Rosa Salazar, Christoph Waltz"),
-  ];
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -109,7 +96,7 @@ class _SearchState extends State<Search> {
                   padding: const EdgeInsets.all(20.0),
                   child: Container(
                     padding: EdgeInsets.all(5),
-                    height: MediaQuery.of(context).size.height * .65,
+                    heigt: MediaQuery.of(context).size.height * .65,
                     child: ListView.separated(
                         itemBuilder: (context, index) {
                           return SearchList(

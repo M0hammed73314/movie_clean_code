@@ -3,8 +3,8 @@
 /// total_pages : 40776
 /// total_results : 815518
 
-class MoviesList {
-  MoviesList(
+class FilteredMovieModel {
+  FilteredMovieModel(
       {this.page,
       this.results,
       this.totalPages,
@@ -13,7 +13,7 @@ class MoviesList {
       this.success,
       this.status_code});
 
-  MoviesList.fromJson(dynamic json) {
+  FilteredMovieModel.fromJson(dynamic json) {
     page = json['page'];
     if (json['results'] != null) {
       results = [];
