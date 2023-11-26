@@ -3,8 +3,8 @@
 /// total_pages : 41035
 /// total_results : 820690
 
-class MyPopular {
-  MyPopular({
+class PopularModel {
+  PopularModel({
     this.page,
     this.results,
     this.success,
@@ -14,12 +14,12 @@ class MyPopular {
     this.totalResults,
   });
 
-  MyPopular.fromJson(dynamic json) {
+  PopularModel.fromJson(dynamic json) {
     page = json['page'];
     if (json['results'] != null) {
       results = [];
       json['results'].forEach((v) {
-        results?.add(Results.fromJson(v));
+        results?.add(PopularResult.fromJson(v));
       });
     }
     totalPages = json['total_pages'];
@@ -33,7 +33,7 @@ class MyPopular {
   bool? success;
   String? status_message;
   int? status_code;
-  List<Results>? results;
+  List<PopularResult>? results;
   int? totalPages;
   int? totalResults;
 
@@ -64,8 +64,8 @@ class MyPopular {
 /// vote_average : 8.7
 /// vote_count : 352
 
-class Results {
-  Results({
+class PopularResult {
+  PopularResult({
     this.adult,
     this.backdropPath,
     this.genreIds,
@@ -82,7 +82,7 @@ class Results {
     this.voteCount,
   });
 
-  Results.fromJson(dynamic json) {
+  PopularResult.fromJson(dynamic json) {
     adult = json['adult'];
     backdropPath = json['backdrop_path'];
     genreIds = json['genre_ids'] != null ? json['genre_ids'].cast<int>() : [];

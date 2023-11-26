@@ -12,19 +12,6 @@ class Search extends StatefulWidget {
 class _SearchState extends State<Search> {
   var textSearch = TextEditingController();
 
-  List<SearchList> searchList = [
-    SearchList(
-        image: "assets/images/favmovie.png",
-        filmName: "Alita Battle Angel",
-        date: "2019",
-        actor: "Rosa Salazar, Christoph Waltz"),
-    SearchList(
-        image: "assets/images/favmovie.png",
-        filmName: "Alita Battle Angel",
-        date: "2019",
-        actor: "Rosa Salazar, Christoph Waltz"),
-  ];
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
