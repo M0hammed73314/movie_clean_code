@@ -96,7 +96,7 @@ class _SearchState extends State<Search> {
                   padding: const EdgeInsets.all(20.0),
                   child: Container(
                     padding: EdgeInsets.all(5),
-                    height: MediaQuery.of(context).size.height * .65,
+                    heigt: MediaQuery.of(context).size.height * .65,
                     child: ListView.separated(
                         itemBuilder: (context, index) {
                           return SearchList(
